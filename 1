@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Обновление списка пакетов и системы
+sudo apt update -y
+sudo apt upgrade -y
+
+# Установка необходимых пакетов
+sudo apt install -y xrdp
+sudo apt install -y xfce4 xfce4-panel thunar xfce4-terminal
+
+# Перезапуск службы lightdm
+sudo systemctl restart lightdm
+
+# Скачивание и установка Google Chrome
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo dpkg -i google-chrome-stable_current_amd64.deb
+
+# Если dpkg вызывает ошибки зависимостей, выполнить следующее:
+sudo apt install -f -y
+
+# Установка пароля для пользователя root (замените 'newpassword' на ваш пароль)
+echo "root:newpassword" | sudo chpasswd
